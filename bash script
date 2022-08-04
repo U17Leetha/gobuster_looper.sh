@@ -1,0 +1,11 @@
+#!/bin/bash
+filename='ips.txt'
+outdir=$filename"_out/"
+mkdir $outdir
+filelines=`cat $filename`
+echo Start
+for line in $filelines ; do
+urls="http://"$line"/"
+outfile=$outdir$line
+gobuster dir -u $urls -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o $outfile
+done
